@@ -1,0 +1,123 @@
+{
+  "name": "codesenseai",
+  "displayName": "CodeSenseAI",
+  "description": "CodeSenseAI is a powerful Visual Studio Code extension that leverages Google Bard AI to provide intelligent code refactoring, writing assistance, and instant answers to coding doubts.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codesenseai_chat",
+          "title": "CodeSense AI",
+          "icon": "resources/icons/chat-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codesenseai_chat": [
+        {
+          "type": "webview",
+          "id": "codesenseai.openChat",
+          "name": "CodeSense AI"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "codesenseai.refresh",
+        "title": "refresh",
+        "icon": {
+          "light": "resources/icons/refresh-light.svg",
+          "dark": "resources/icons/refresh-dark.svg"
+        }
+      },
+      {
+        "command": "codesenseai.openChat",
+        "title": "Open Chat"
+      },
+      {
+        "command": "codesenseai.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "codesenseai.refactorCode",
+        "title": "Refactor code"
+      },
+      {
+        "command": "codesenseai.explainCode",
+        "title": "Explain code"
+      },
+      {
+        "command": "codesenseai.askQuestion",
+        "title": "Ask question"
+      },
+      {
+        "command": "codesenseai.performOperationOnCode",
+        "title": "Modify selected code"
+      },
+      {
+        "command": "codesenseai.createProjects",
+        "title": "create Project"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "codesenseai.refresh",
+          "when": "view == codesenseai_chat",
+          "group": "navigation@0"
+        }
+      ]
+    },
+    "permissions": [
+      "webview"
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/node-fetch": "^2.6.4",
+    "@types/vscode": "^1.78.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  },
+  "dependencies": {
+    "@huggingface/inference": "^1.8.0",
+    "core-js-pure": "^3.31.0",
+    "dotenv": "^16.3.1",
+    "googlebard": "^1.0.6",
+    "langchain": "^0.0.78",
+    "node-fetch": "^2.6.12",
+    "openai": "^3.3.0"
+  }
+}
