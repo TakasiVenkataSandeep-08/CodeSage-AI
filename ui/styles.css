@@ -20,8 +20,9 @@ button {
 button,
 #chatInputWrapper,
 .promptCard,
-.chatCard {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.chatCard,
+#chatTitle {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mainWrapper,
@@ -83,9 +84,7 @@ button,
   display: block;
   font-weight: bold;
   font-size: 12px;
-  color: #ccc;
-  padding: 8px 5px;
-  border-bottom: 0.5px solid #444654;
+  padding: 5px;
   background-color: #444654;
 }
 
@@ -98,7 +97,7 @@ button,
 #chatInputWrapper {
   display: flex;
   padding: 5px;
-  margin: 5px;
+  margin: 0 5px 5px 5px;
   border-radius: 10px;
   align-items: center;
   background-color: #444654;
@@ -206,7 +205,7 @@ button,
 
 .promptCard {
   background-color: #0a191e;
-  font-size: small;
+  font-size: 12px;
   border-radius: 5px;
   padding: 5px;
   font-weight: 600;
@@ -216,10 +215,10 @@ button,
   text-align: center;
   min-width: 28%;
   flex: 1;
-  margin: 0 3px;
+  margin: 1px 3px;
   height: 20px;
   cursor: pointer;
-  border: 1px solid #444654;
+  border: 0.5px solid #444654;
 }
 
 .user-message {
@@ -308,6 +307,7 @@ button,
   border: 1px solid #444654;
 }
 
+.newChatButton:hover,
 .chatCard:hover,
 .promptCard:hover {
   background-color: #0c2027;
@@ -338,16 +338,9 @@ button,
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
-}
-::-webkit-scrollbar-track {
-  background-color: #444654;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #ccc;
   border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
 }

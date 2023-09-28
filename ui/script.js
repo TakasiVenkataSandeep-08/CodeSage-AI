@@ -250,7 +250,7 @@
     }
     currentActiveChatId = chatId;
     currentActiveChatData = currentChatData;
-    chatTitle.textContent = `Title: ${
+    chatTitle.textContent = `${
       currentChatData.title.length > 25
         ? currentChatData.title.substring(0, 25) + "..."
         : currentChatData.title
@@ -273,7 +273,7 @@
     currentActiveChatId = chatData.chatId;
     chatMessages.textContent = null;
     const chatTitle = document.getElementById("chatTitle");
-    chatTitle.textContent = `Title: ${
+    chatTitle.textContent = `${
       chatData.title.length > 25
         ? chatData.title.substring(0, 25) + "..."
         : chatData.title

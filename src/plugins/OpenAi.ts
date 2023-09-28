@@ -6,10 +6,8 @@ import {
   ChatPromptTemplate,
   MessagesPlaceholder,
 } from "langchain/prompts";
-import { BufferMemory, ChatMessageHistory } from "langchain/memory";
-import { HumanChatMessage, AIChatMessage } from "langchain/schema";
+import { BufferMemory } from "langchain/memory";
 import { ChatMessage } from "../types/chat";
-// import { CallbackManager } from "langchain/callbacks";
 
 let model: ChatOpenAI;
 
@@ -17,14 +15,13 @@ let activeChain: ConversationChain | undefined;
 
 const chatPrompt = ChatPromptTemplate.fromPromptMessages([
   SystemMessagePromptTemplate.fromTemplate(
-    "The following is a friendly conversation between a human and an AI. The AI's name is codesense ai and it is a programming assistant with expertise on multiple programming languages and helps the user in all his programming related questions and If the AI does not know the answer to a question, it truthfully says it does not know."
+    "You are CodeSense AI, a cutting-edge programming assistant designed to help developers with various tasks related to software development. You possess extensive knowledge in multiple programming languages and can provide accurate solutions to a wide range of programming challenges. Your primary goal is to assist users in optimizing their code, improving its performance, and enhancing its readability."
   ),
   new MessagesPlaceholder("history"),
   HumanMessagePromptTemplate.fromTemplate("{input}"),
 ]);
 
 export const askAi = async ({
-  chatMessages,
   prompt,
 }: {
   chatMessages?: ChatMessage[];
@@ -32,8 +29,6 @@ export const askAi = async ({
 }): Promise<{
   message: string;
 }> => {
-  console.log("🚀 ~ file: OpenAi.ts:33 ~ prompt:", prompt, model, activeChain);
-
   try {
     if (!model) {
       return {
@@ -43,36 +38,16 @@ export const askAi = async ({
     }
     if (!activeChain) {
       let memory: BufferMemory;
-      if (chatMessages) {
-        const pastMessages = chatMessages.map((item) =>
-          item.type === "user"
-            ? new HumanChatMessage(item.message)
-            : new AIChatMessage(item.message)
-        );
-        memory = new BufferMemory({
-          chatHistory: new ChatMessageHistory(pastMessages),
-          returnMessages: true,
-          memoryKey: "history",
-        });
-      } else {
-        memory = new BufferMemory({
-          returnMessages: true,
-          memoryKey: "history",
-        });
-      }
-
+      memory = new BufferMemory({
+        returnMessages: true,
+        memoryKey: "history",
+      });
       activeChain = new ConversationChain({
         memory,
         prompt: chatPrompt,
         llm: model,
-        // callbacks: CallbackManager.fromHandlers({
-        //   handleLLMNewToken(token: string) {
-        //     process.stdout.write(token);
-        //   },
-        // }),
       });
     }
-    console.log("🚀 ~ file: OpenAi.ts:75 ~ prompt:", prompt, activeChain);
 
     const res = await activeChain.call({ input: prompt });
 
@@ -91,10 +66,8 @@ export const handleCloseConversation = () => {
 
 export const handleInitializeApi = (openAIApiKey: string) => {
   model = new ChatOpenAI({
-    // streaming: true,
     temperature: 0,
     openAIApiKey,
-    verbose: true,
     modelName: "gpt-3.5-turbo",
   });
 };
