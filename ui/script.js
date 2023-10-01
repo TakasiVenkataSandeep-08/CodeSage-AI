@@ -27,7 +27,7 @@
     const progressBarWrapper = document.createElement("div");
 
     const progressText = document.createElement("p");
-    progressText.innerText = "Please wait while codesense does it's magic.";
+    progressText.innerText = "Please wait while codesage does it's magic.";
     progressText.classList.add("progressText");
 
     const progressBar = document.createElement("div");
@@ -192,7 +192,7 @@
 
     const messagePrefix = document.createElement("span");
     messagePrefix.classList.add("message-prefix");
-    messagePrefix.textContent = "Codesense AI: ";
+    messagePrefix.textContent = "CodeSage AI: ";
 
     const messageText = handlePreAndCodeBlocks(response);
 
@@ -278,6 +278,7 @@
         ? chatData.title.substring(0, 25) + "..."
         : chatData.title
     }`;
+    handleShowChatInputWrapper("flex");
   }
 
   function handleShowHistoryTab(allChatsData) {

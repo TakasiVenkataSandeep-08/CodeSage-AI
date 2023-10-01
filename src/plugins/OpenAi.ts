@@ -7,7 +7,7 @@ import {
   MessagesPlaceholder,
 } from "langchain/prompts";
 import { BufferMemory } from "langchain/memory";
-import { ChatMessage } from "../types/chat";
+// import { ChatMessage } from "../types/chat";
 
 let model: ChatOpenAI;
 
@@ -15,7 +15,7 @@ let activeChain: ConversationChain | undefined;
 
 const chatPrompt = ChatPromptTemplate.fromPromptMessages([
   SystemMessagePromptTemplate.fromTemplate(
-    "You are CodeSense AI, a cutting-edge programming assistant designed to help developers with various tasks related to software development. You possess extensive knowledge in multiple programming languages and can provide accurate solutions to a wide range of programming challenges. Your primary goal is to assist users in optimizing their code, improving its performance, and enhancing its readability."
+    "You are CodeSage AI, a cutting-edge programming assistant designed to help developers with various tasks related to software development. You possess extensive knowledge in multiple programming languages and can provide accurate solutions to a wide range of programming challenges. Your primary goal is to assist users in optimizing their code, improving its performance, and enhancing its readability."
   ),
   new MessagesPlaceholder("history"),
   HumanMessagePromptTemplate.fromTemplate("{input}"),
@@ -24,7 +24,6 @@ const chatPrompt = ChatPromptTemplate.fromPromptMessages([
 export const askAi = async ({
   prompt,
 }: {
-  chatMessages?: ChatMessage[];
   prompt: string;
 }): Promise<{
   message: string;
@@ -48,12 +47,9 @@ export const askAi = async ({
         llm: model,
       });
     }
-
     const res = await activeChain.call({ input: prompt });
-
     return { message: res.response };
-  } catch (err) {
-    console.log(err);
+  } catch (_err) {
     return {
       message: "Something went wrong. please try again later.",
     };

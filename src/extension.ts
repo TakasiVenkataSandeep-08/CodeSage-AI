@@ -1,14 +1,14 @@
 import * as vscode from "vscode";
 import "./fetch-polyfill";
-import { CodesenseaiViewProvider } from "./CodesenseaiViewProvider";
+import { CodesageaiViewProvider } from "./CodesageaiViewProvider";
 
 export function activate(context: vscode.ExtensionContext) {
-  const provider = new CodesenseaiViewProvider(
+  const provider = new CodesageaiViewProvider(
     context.extensionUri,
     context.globalState
   );
   const openChat = vscode.window.registerWebviewViewProvider(
-    CodesenseaiViewProvider.viewType,
+    CodesageaiViewProvider.viewType,
     provider,
     {
       webviewOptions: { retainContextWhenHidden: true },

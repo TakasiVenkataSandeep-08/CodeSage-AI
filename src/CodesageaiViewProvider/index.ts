@@ -17,8 +17,8 @@ import {
   CustomPrompts,
 } from "../types/chat";
 
-export class CodesenseaiViewProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = "codesenseai.openChat";
+export class CodesageaiViewProvider implements vscode.WebviewViewProvider {
+  public static readonly viewType = "codesageai.openChat";
 
   private _view?: vscode.WebviewView;
 
@@ -281,7 +281,8 @@ export class CodesenseaiViewProvider implements vscode.WebviewViewProvider {
       messages: [] as Array<ChatMessage>,
       createdAt: new Date(),
     };
-    const allChatsData = this._globalState.get("chatHistory") || {};
+    const allChatsData =
+      (this._globalState.get("chatHistory") as ChatHistory) || {};
     this._globalState.update("chatHistory", {
       ...allChatsData,
       [newChatId]: newChatData,
@@ -351,7 +352,7 @@ export class CodesenseaiViewProvider implements vscode.WebviewViewProvider {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script nonce="${nonce}" src="${showdownUri}"></script>
     <link href="${styleResetUri}" rel="stylesheet" />
-    <title>Codesense AI</title>
+    <title>Codesage AI</title>
   </head>
   <body>
     <div class="mainWrapper">

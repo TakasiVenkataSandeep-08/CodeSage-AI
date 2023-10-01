@@ -1,14 +1,17 @@
 {
-  "name": "codesenseai",
-  "displayName": "CodeSenseAI",
-  "description": "CodeSenseAI is a powerful Visual Studio Code extension that leverages Google Bard AI to provide intelligent code refactoring, writing assistance, and instant answers to coding doubts.",
+  "name": "codesageai",
+  "displayName": "CodeSage AI",
+  "description": "CodeSage AI is a powerful Visual Studio Code extension that leverages Google Bard AI to provide intelligent code refactoring, writing assistance, and instant answers to coding doubts.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.78.0"
   },
+  "icon": "resources/icons/logo/codesageai-logo.png",
+  "repository": "https://github.com/TakasiVenkataSandeep-08/CodeSage-AI",
   "categories": [
     "Other"
   ],
+  "publisher": "TakasiVenkataSandeep",
   "activationEvents": [
     "*"
   ],
@@ -17,27 +20,21 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "codesenseai_chat",
-          "title": "CodeSense AI",
+          "id": "codesageai_chat",
+          "title": "CodeSage AI",
           "icon": "resources/icons/chat-icon.svg"
         }
       ]
     },
     "views": {
-      "codesenseai_chat": [
+      "codesageai_chat": [
         {
           "type": "webview",
-          "id": "codesenseai.openChat",
-          "name": "CodeSense AI"
+          "id": "codesageai.openChat",
+          "name": "CodeSage AI"
         }
       ]
     },
-    "commands": [
-      {
-        "command": "codesenseai.openChat",
-        "title": "Open Chat"
-      }
-    ],
     "permissions": [
       "webview"
     ]

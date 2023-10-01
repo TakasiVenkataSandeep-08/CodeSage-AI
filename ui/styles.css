@@ -58,7 +58,7 @@ button,
   margin: 2px;
   color: #ccc;
   cursor: pointer;
-  flex: 1;
+  width: calc(100%-10px);
 }
 
 #chatContainer {
