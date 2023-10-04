@@ -1,7 +1,5 @@
 # CodeSage AI - Visual Studio Code Extension
 
-![CodeSage AI Logo](resources/icons/logo/codesageai-logo.png)
-
 CodeSage AI is a powerful Visual Studio Code extension that serves as an intelligent code assistant, designed to streamline your development process and make your coding experience more efficient. With this extension, you can seamlessly integrate open API keys for chat functionality and enjoy a host of features that enhance your coding productivity.
 
 ## Key Features
