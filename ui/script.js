@@ -214,6 +214,13 @@
       promptCard.classList.add("promptCard");
       chatPromptWrapper.appendChild(promptCard);
       promptCard.addEventListener("click", () => {
+        if (!currentActiveChatId) {
+          handleSendMessageToEditor(
+            "showErrorMessage",
+            "No active chat found, please create one."
+          );
+          return;
+        }
         let payload = {
           chatId: currentActiveChatId,
           customPromptData: { ...customPromptData, id: customPromptId },
@@ -234,9 +241,9 @@
   }
 
   function handleOpenEmptyScreen(customPrompts) {
-    handleShowChatContainer("flex");
-    handleShowCustomPrompts(customPrompts);
     handleShowChatInputWrapper("none");
+    handleShowCustomPrompts(customPrompts);
+    handleShowChatContainer("flex");
   }
 
   function handleResumeOldChat({ chatId, currentChatData, customPrompts }) {
@@ -386,6 +393,13 @@
 
   // Event listener for sending a message
   sendButton.addEventListener("click", () => {
+    if (!currentActiveChatId) {
+      handleSendMessageToEditor(
+        "showErrorMessage",
+        "No active chat found, please create one."
+      );
+      return;
+    }
     const message = messageInput.value.trim();
     if (message) {
       addUserMessage(message);

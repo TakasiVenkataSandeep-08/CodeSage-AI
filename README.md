@@ -1,6 +1,6 @@
 # CodeSage AI - Visual Studio Code Extension
 
-![code sage ai logo](https://previews.dropbox.com/p/thumb/ACChRTUHNi5ksUxq_UkbpcN1vbBNO_tiBNxnbmbM6INuI8Rs4511PcZkED2Qe3qSCSbwCtUQTVFIH3nw-Q-0vSeHm4Q9T67Wq3eiUpeU646OCN57rwXjmsY25bBKzzA3dxMbpsl6Oeth2JkEAUKpULoUyIMCnH4nXW_cSzaIKzce-wyVJQAWK99nDt7sJ89YuUDwhlMviuQXWUqyLp4FDo22vNZEQX79ZRx7EjqG8fN-j99Nilt-O8yzR7Uqmc0ps1fypoZ7DTOjeq_obu9tdoRQQj9Q8SIwEXhRVp2ETlFOoWewtx3qIlf8jluDxpVUzxMNn0zLwp_dtfKDeBw1T90p/p.png)
+![CodeSage AI Logo](resources/icons/logo/codesageai-logo.png)
 
 CodeSage AI is a powerful Visual Studio Code extension that serves as an intelligent code assistant, designed to streamline your development process and make your coding experience more efficient. With this extension, you can seamlessly integrate open API keys for chat functionality and enjoy a host of features that enhance your coding productivity.
 

@@ -7,7 +7,10 @@
     "vscode": "^1.78.0"
   },
   "icon": "resources/icons/logo/codesageai-logo.png",
-  "repository": "https://github.com/TakasiVenkataSandeep-08/CodeSage-AI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TakasiVenkataSandeep-08/CodeSage-AI.git"
+  },
   "categories": [
     "Other"
   ],

@@ -29,39 +29,43 @@ export class CodesageaiViewProvider implements vscode.WebviewViewProvider {
     }
   ) {}
 
-  public initalizePrompts() {
+  public initializePrompts() {
     const customPrompts = this._globalState.get(
       "customPrompts"
     ) as CustomPrompts;
-    if (!customPrompts) {
-      this._globalState.update("customPrompts", {
-        refactorCode: {
-          title: "Refactor selection",
-          prompt:
-            "Please refactor the provided code to significantly improve its quality, readability, and maintainability while ensuring that its functionality remains intact. Focus on eliminating code duplication, reducing complexity, and enhancing overall readability. Additionally, consider applying best practices and modern programming standards to make the code more efficient and easier to understand, modify, and extend. the code i want you to perform this operation on is ",
-        },
-        explainSelection: {
-          title: "Explain selection",
-          prompt: `Write comments for the code to improve its documentation and make it easier to understand and maintain. Use the following prompts to guide the commenting process:
+    if (customPrompts) {
+      return customPrompts;
+    }
+    this._globalState.update("customPrompts", {
+      refactorCode: {
+        title: "Refactor selection",
+        prompt:
+          "Please refactor the provided code to significantly improve its quality, readability, and maintainability while ensuring that its functionality remains intact. Focus on eliminating code duplication, reducing complexity, and enhancing overall readability. Additionally, consider applying best practices and modern programming standards to make the code more efficient and easier to understand, modify, and extend. the code i want you to perform this operation on is ",
+      },
+      explainSelection: {
+        title: "Explain selection",
+        prompt: `Write comments for the code to improve its documentation and make it easier to understand and maintain. Use the following prompts to guide the commenting process:
             1. Provide a brief description of each function and its purpose.
             2. Use clear and concise language to explain the code's functionality and any algorithms used.
             3. Use comments to explain any complex or non-obvious code sections.
             4. Use JSDoc comments to document the input and output parameters of each function. 
           the code i want you to perform this operation on is `,
-        },
-        debugSelection: {
-          title: "Debug selection",
-          prompt:
-            "Check the code i provide you for potential bugs, errors, and vulnerabilities. This step involves reviewing the codebase to identify any potential issues that may affect its functionality, security, and performance and document them through proper commenting and the code i want you to perform this operation on is ",
-        },
-        queryOnSelection: {
-          title: "Action on selection",
-          prompt:
-            "perform the following action on code, Action to perform is $userDescriptionOrQuery and the code i want you to perform this operation on is : $codeSelection",
-        },
-      });
-    }
-    return customPrompts;
+      },
+      debugSelection: {
+        title: "Debug selection",
+        prompt:
+          "Check the code i provide you for potential bugs, errors, and vulnerabilities. This step involves reviewing the codebase to identify any potential issues that may affect its functionality, security, and performance and document them through proper commenting and the code i want you to perform this operation on is ",
+      },
+      queryOnSelection: {
+        title: "Action on selection",
+        prompt:
+          "perform the following action on code, Action to perform is $userDescriptionOrQuery and the code i want you to perform this operation on is : $codeSelection",
+      },
+    });
+    const addedPrompts = this._globalState.get(
+      "customPrompts"
+    ) as CustomPrompts;
+    return addedPrompts;
   }
 
   public generateUUID() {
@@ -81,7 +85,7 @@ export class CodesageaiViewProvider implements vscode.WebviewViewProvider {
   }
 
   private handleOpenLastChat() {
-    const customPrompts = this.initalizePrompts();
+    const customPrompts = this.initializePrompts();
     const currentActiveChatId = this._globalState.get(
       "currentActiveChat"
     ) as string;
@@ -266,6 +270,9 @@ export class CodesageaiViewProvider implements vscode.WebviewViewProvider {
         case "copyCode": {
           copyToClipboard(data.value);
           break;
+        }
+        case "showErrorMessage": {
+          vscode.window.showErrorMessage(data.value);
         }
         default:
           break;
